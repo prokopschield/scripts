@@ -20,5 +20,5 @@ run() {
 
 for name in "$@"
 do
-    run "$name"
+	run "$name"
 done

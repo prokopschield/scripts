@@ -5,14 +5,14 @@ dir=~/.ssh
 file="$dir/authorized_keys"
 
 check() {
-    $@
+	$@
 
 	local status=$?
 
-    if [ $status -ne 0 ]; then
-        echo "Command '$@' failed with exit status $status."
-        exit $status
-    fi
+	if [ $status -ne 0 ]; then
+		echo "Command '$@' failed with exit status $status."
+		exit $status
+	fi
 }
 
 nlf() {
