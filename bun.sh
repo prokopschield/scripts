@@ -1,23 +1,23 @@
 #!/bin/sh
 
+install_package() {
+    local package=$1
+    if ! command -v "$package" > /dev/null; then
+        if ! apt-get install -y "$package"; then
+            echo "Cannot install $package." >&2
+            exit 1
+        fi
+    fi
+}
+
 ## install curl
-if ! [ -n `which curl` ]; then
-	if ! apt install curl -y; then
-		echo Cannot install curl. >&2
-		exit 1
-	fi
-fi
+install_package curl
 
 ## install unzip
-if ! [ -n `which unzip` ]; then
-	if ! apt install unzip -y; then
-		echo Cannot install unzip. >&2
-		exit 1
-	fi
-fi
+install_package unzip
 
 ## install bun
-if ! [ -n `which bun` ]; then
+ if ! command -v "bun" > /dev/null; then
 	if ! curl -fsSL https://bun.sh/install | bash; then
 		echo Cannot install bun. >&2
 		exit 2
