@@ -1,12 +1,17 @@
 #!/bin/sh
 
+install_package() {
+    local package=$1
+    if ! command -v "$package" > /dev/null; then
+        if ! apt-get install -y "$package"; then
+            echo "Cannot install $package." >&2
+            exit 1
+        fi
+    fi
+}
+
 ## install curl
-if ! [ -n `which curl` ]; then
-	if ! apt install curl -y; then
-		echo Cannot install curl. >&2
-		exit 1
-	fi
-fi
+install_package curl
 
 run() {
 	url="https://raw.githubusercontent.com/prokopschield/scripts/master/$1.sh"
