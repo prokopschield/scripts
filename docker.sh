@@ -27,4 +27,5 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 
 if [ ! -f /bin/docker-compose ]; then
   curl -fsSL https://raw.githubusercontent.com/prokopschield/scripts/master/docker-compose.sh -o /bin/docker-compose
+  chmod +x /bin/docker-compose
 fi
